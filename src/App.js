@@ -1,23 +1,15 @@
-import logo from './logo.svg';
+import ActionPlanner from './components/ActionPlanner/ActionPlanner';
+import ModalResponse from './components/ModalResponse/ModalResponse';
+import { useSelector } from 'react-redux';
+import { selectModal } from './store/slices/modalSlice/modalSlice';
 import './App.css';
 
 function App() {
+  const {isModal} = useSelector(selectModal)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={isModal ? "App" : ""}>
+      <ActionPlanner/>
+      {isModal && <ModalResponse/>}
     </div>
   );
 }
